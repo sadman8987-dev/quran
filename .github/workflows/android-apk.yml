@@ -5,7 +5,7 @@ on:
   push:
     paths:
       - ".github/workflows/android-apk.yml"
-      - "quran-icon.png"
+      - "quran-icon-optimized.png"
 
 jobs:
   build:
@@ -58,7 +58,7 @@ jobs:
           EOF
           npx cap add android
           npx cap sync android
-          if [ -f quran-icon.png ]; then
+          if [ -f quran-icon-optimized.png ]; then
             for density in mdpi hdpi xhdpi xxhdpi xxxhdpi; do
               mkdir -p "android/app/src/main/res/mipmap-$density"
               case "$density" in
@@ -69,7 +69,7 @@ jobs:
                 xxxhdpi) size=192 ;;
               esac
               mkdir -p "android/app/src/main/res/mipmap-$density"
-              convert quran-icon.png -resize "${size}x${size}" -background white -gravity center -extent "${size}x${size}" "android/app/src/main/res/mipmap-$density/ic_launcher.png"
+              convert quran-icon-optimized.png -resize "${size}x${size}" -background white -gravity center -extent "${size}x${size}" "android/app/src/main/res/mipmap-$density/ic_launcher.png"
               cp "android/app/src/main/res/mipmap-$density/ic_launcher.png" "android/app/src/main/res/mipmap-$density/ic_launcher_round.png"
               convert quran-icon.png -resize "${size}x${size}" -background white -gravity center -extent "${size}x${size}" "android/app/src/main/res/mipmap-$density/ic_launcher_foreground.png"
             done
