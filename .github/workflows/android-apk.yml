@@ -6,6 +6,10 @@ on:
     paths:
       - ".github/workflows/android-apk.yml"
       - "quran-icon-optimized.png"
+      - "index.html"
+      - "style.css"
+      - "service-worker.js"
+      - "mushaf-calligraphy.jpeg"
 
 jobs:
   build:
