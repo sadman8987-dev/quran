@@ -68,9 +68,20 @@ jobs:
                 xxhdpi) size=144 ;;
                 xxxhdpi) size=192 ;;
               esac
-              convert quran-icon.png -resize "${size}x${size}" "android/app/src/main/res/mipmap-$density/ic_launcher.png"
+              mkdir -p "android/app/src/main/res/mipmap-$density"
+              convert quran-icon.png -resize "${size}x${size}" -background white -gravity center -extent "${size}x${size}" "android/app/src/main/res/mipmap-$density/ic_launcher.png"
               cp "android/app/src/main/res/mipmap-$density/ic_launcher.png" "android/app/src/main/res/mipmap-$density/ic_launcher_round.png"
+              convert quran-icon.png -resize "${size}x${size}" -background white -gravity center -extent "${size}x${size}" "android/app/src/main/res/mipmap-$density/ic_launcher_foreground.png"
             done
+            mkdir -p android/app/src/main/res/mipmap-anydpi-v26
+            cat > android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml <<'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+              <background android:drawable="@android:color/white"/>
+              <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+          </adaptive-icon>
+          EOF
+            cp android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
           fi
           cat >> android/app/build.gradle <<'EOF'
 
