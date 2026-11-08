@@ -1,7 +1,7 @@
 'use strict';
-const VERSION = 'quran-karim-v38';
+const VERSION = 'quran-karim-v39';
 const SHELL = [
-  './', './index.html', './style.css?v=36', './app.js', './manifest.json',
+  './', './index.html', './style.css?v=37', './app.js', './manifest.json',
   './icon.svg', './mushaf-calligraphy.jpeg'
 ];
 const DATA_CACHE = VERSION + '-data';
