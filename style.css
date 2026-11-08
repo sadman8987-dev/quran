@@ -24,9 +24,14 @@ body {
   min-height: 100vh;
   margin: 0;
   color: var(--text);
-  background:
-    radial-gradient(ellipse at 50% 0, rgba(209, 192, 147, .11), transparent 38rem),
-    var(--bg);
+  background-color: #10251c;
+  background-image:
+    linear-gradient(rgba(7, 20, 14, .66), rgba(7, 20, 14, .74)),
+    url("mushaf-calligraphy.jpeg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: Cairo, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
