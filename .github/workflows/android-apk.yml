@@ -43,6 +43,11 @@ jobs:
           npm install @capacitor/core @capacitor/android
           npm install --save-dev @capacitor/cli
 
+      - name: Install image tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+
       - name: Configure Capacitor
         run: |
           cat > capacitor.config.json <<'EOF'
@@ -71,7 +76,7 @@ jobs:
               mkdir -p "android/app/src/main/res/mipmap-$density"
               convert quran-icon-optimized.png -resize "${size}x${size}" -background white -gravity center -extent "${size}x${size}" "android/app/src/main/res/mipmap-$density/ic_launcher.png"
               cp "android/app/src/main/res/mipmap-$density/ic_launcher.png" "android/app/src/main/res/mipmap-$density/ic_launcher_round.png"
-              convert quran-icon.png -resize "${size}x${size}" -background white -gravity center -extent "${size}x${size}" "android/app/src/main/res/mipmap-$density/ic_launcher_foreground.png"
+              convert quran-icon-optimized.png -resize "${size}x${size}" -background white -gravity center -extent "${size}x${size}" "android/app/src/main/res/mipmap-$density/ic_launcher_foreground.png"
             done
             mkdir -p android/app/src/main/res/mipmap-anydpi-v26
             cat > android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml <<'EOF'
